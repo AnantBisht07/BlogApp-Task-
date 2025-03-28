@@ -13,7 +13,6 @@ const blogRoute = require('./routes/blogRoute');
 
 const app = express();
 
-// CORS configuration
 const corsOptions = {
   origin: "http://localhost:5173",  
   credentials: true,  
@@ -30,10 +29,8 @@ const PORT = process.env.PORT || 4000;
 app.use('/api/auth/user', userRoute);
 app.use('/api/user', blogRoute);
 
-// Serve static files from 'client/dist' folder
 app.use(express.static(path.join(__dirname , '/client/dist')));
 
-// Catch-all route to serve index.html for React app
 app.get('*', (_, res) => {
   res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'));
 });
